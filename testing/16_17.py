@@ -7,8 +7,8 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 def hello(neg,s):
-    d16=pd.read_csv('raw_data/2016-17.csv').set_index('full_name')
-    d17=pd.read_csv('raw_data/2017-18.csv').set_index('full_name')
+    d16=pd.read_csv('../raw_data/2016-17.csv').set_index('full_name')
+    d17=pd.read_csv('../raw_data/2017-18.csv').set_index('full_name')
 
     #Eliminating all players that dint play in both years
     #sorting alphabetically
