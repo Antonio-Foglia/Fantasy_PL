@@ -29,16 +29,19 @@ def main():
 
         print(good)
 
-        results=d20.drop(['goals_scored','assists','total_points','minutes',
-        'goals_conceded','creativity','influence','threat','bonus','bps',
-        'ict_index','clean_sheets','red_cards','yellow_cards',
-        'selected_by_percent'],1)
+        results=d20#.drop(['goals_scored','assists','total_points','minutes',
+        #'goals_conceded','creativity','influence','threat','bonus','bps',
+        #'ict_index','clean_sheets','red_cards','yellow_cards',
+        #'selected_by_percent'],1)
         for i in results.index:
             if results['full_name'][i] not in good:
                 results.drop(i,inplace=True)
 
 
         print(results)
+        results.to_csv('results.csv')
+
+
 
         again = input("Run again? (y/n) ")
 
