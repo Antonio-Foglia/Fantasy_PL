@@ -101,55 +101,57 @@ def diff(predictions,test_labels):
     return right,bad,number
 
 def main():
+    again='y'
+    while again=='y':
 
-    d16,d17,d18,d19=frames()
-    diff_knn=0
-    right_knn=0
-    bad_knn=0
-    number_knn=0
-    best_pts_knn=0
-    best_k=0
+        d16,d17,d18,d19=frames()
+        diff_knn=0
+        right_knn=0
+        bad_knn=0
+        number_knn=0
+        best_pts_knn=0
+        best_k=0
 
-    diff_svc=0
-    right_svc=0
-    bad_svc=0
-    number_svc=0
-    best_pts_svc=0
-
-    for pts in range(int(input('Lower band? ')),201,1):
-        train_data,train_labels,test_data,test_labels=data(pts,d16,d17,d18,d19)
-        for k in range(1,31,1):
-            right,bad,number = knn(train_data,train_labels,test_data,test_labels,k)
-            diff=right-bad
-            if diff>10:
-                print("knn  pts: %d  k: %d  r: %d  b: %d  n: %d  diff: %d" %(pts,k,right,bad,number,diff))
-            if diff > diff_knn:
-                diff_knn=diff
-                right_knn=right
-                bad_knn=bad
-                number_knn=number
-                best_pts_knn=pts
-                best_k=k
-
-
-        # right,bad,number = svc(train_data,train_labels,test_data,test_labels)
-        # diff=right-bad
-        # if diff>10:
-        #     print("svc  pts: %d  r: %d  b: %d  n: %d  diff: %d" %(pts,right,bad,number,diff))
-        # if diff > diff_svc:
-        #     diff_svc=diff
-        #     right_svc=right
-        #     bad_svc=bad
-        #     number_svc=number
-        #     best_pts_svc=pts
+        diff_svc=0
+        right_svc=0
+        bad_svc=0
+        number_svc=0
+        best_pts_svc=0
+        xoxo=int(input('Cutoff for print? '))
+        for pts in range(int(input('Lower pts band? ')),201,1):
+            train_data,train_labels,test_data,test_labels=data(pts,d16,d17,d18,d19)
+            for k in range(1,31,1):
+                right,bad,number = knn(train_data,train_labels,test_data,test_labels,k)
+                diff=right-bad
+                if diff>=xoxo:
+                    print("knn  pts: %d  k: %d  r: %d  b: %d  n: %d  diff: %d" %(pts,k,right,bad,number,diff))
+                if diff > diff_knn:
+                    diff_knn=diff
+                    right_knn=right
+                    bad_knn=bad
+                    number_knn=number
+                    best_pts_knn=pts
+                    best_k=k
 
 
+            # right,bad,number = svc(train_data,train_labels,test_data,test_labels)
+            # diff=right-bad
+            # if diff>10:
+            #     print("svc  pts: %d  r: %d  b: %d  n: %d  diff: %d" %(pts,right,bad,number,diff))
+            # if diff > diff_svc:
+            #     diff_svc=diff
+            #     right_svc=right
+            #     bad_svc=bad
+            #     number_svc=number
+            #     best_pts_svc=pts
 
 
-    print("Best knn  pts: %d  k: %d  r: %d  b: %d  n: %d  diff: %d" %(best_pts_knn,best_k,right_knn,bad_knn,number_knn,diff_knn))
-    # print("Best svc  pts: %d  r: %d  b: %d  n: %d  diff: %d" %(best_pts_svc,right_svc,bad_svc,number_svc,diff_svc))
 
-    return
+
+        print("Best knn  pts: %d  k: %d  r: %d  b: %d  n: %d  diff: %d" %(best_pts_knn,best_k,right_knn,bad_knn,number_knn,diff_knn))
+        # print("Best svc  pts: %d  r: %d  b: %d  n: %d  diff: %d" %(best_pts_svc,right_svc,bad_svc,number_svc,diff_svc))
+
+        again = input("Run again? (y/n) ")
 
 
 main()
