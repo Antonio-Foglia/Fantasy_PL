@@ -11,7 +11,7 @@ def main():
     while again=='y':
         d16,d17,d18,d19,d20=data_frames()
         train_data,train_labels=data(d16,d17,d18,d19,int(input('What is the'+
-        'points cutoff? ')))
+        ' points cutoff? ')))
 
         model = KNeighborsClassifier(n_neighbors=int(input('Neighbours? ')))
         model.fit(train_data, train_labels)
@@ -29,10 +29,10 @@ def main():
 
         print(good)
 
-        results=d20#.drop(['goals_scored','assists','total_points','minutes',
-        #'goals_conceded','creativity','influence','threat','bonus','bps',
-        #'ict_index','clean_sheets','red_cards','yellow_cards',
-        #'selected_by_percent'],1)
+        results=d20.drop(['goals_scored','assists','total_points','minutes',
+        'goals_conceded','creativity','influence','threat','bonus','bps',
+        'ict_index','clean_sheets','red_cards','yellow_cards',
+        'selected_by_percent'],1)
         for i in results.index:
             if results['full_name'][i] not in good:
                 results.drop(i,inplace=True)
