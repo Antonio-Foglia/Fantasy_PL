@@ -4,7 +4,7 @@ HOW IT WORKS:
 
 *All the learning process can be found in testing directory.
 
-*I train the inn algorithm with data from the 16-17 seasons and 18-19 seasons and the results of the 17-18 seasons and 19-20 seasons respectively.
+*I train the knn algorithm with data from the 16-17 seasons and 18-19 seasons and the results of the 17-18 seasons and 19-20 seasons respectively.
 
 *All parameters are the same weight.
 
